@@ -1,6 +1,12 @@
-import { Aluno, Avaliacao, Etapa } from "./aluno";
-import { Arroz, Bebida, Produto, TipoArroz, TipoProduto } from "./produto";
-import { User } from "./user";
+import { Aluno, Etapa } from "./aluno/aluno";
+import {
+    Arroz,
+    Bebida,
+    Produto,
+    TipoArroz,
+    TipoProduto,
+} from "./produto/produto";
+import { User } from "./user/user";
 
 // // Paradigma IMPERATIVO
 // let valor1 = 10;
@@ -22,8 +28,8 @@ import { User } from "./user";
 // console.log(media);
 
 // // Paradigma orientado a objetos
-// let user1 = new User("us1", "João", 30);
-// let user99 = new User("us99", "Maria");
+let user1 = new User("us1", "João", 30);
+let user99 = new User("us99", "Maria");
 
 // user1.mostarNome();
 // //user99.mostarNome();
@@ -32,6 +38,10 @@ import { User } from "./user";
 // user1.mostarNome();
 
 let arroz = new Arroz(7, TipoArroz.Parbolizado);
+
+arroz.tipo = TipoProduto.Alimento;
+console.log(arroz.tipo);
+
 let cocaCola = new Bebida("Coca Cola", 5, 2);
 // let xicara = new Produto("Xicara", 20, TipoProduto.Bazar);
 

@@ -11,7 +11,7 @@ export class User {
         this.ativo = false;
     }
 
-    mostarNome() {
+    mostarNome(): void {
         if (this.ativo === false) {
             console.log("O user não está ativo, ative ele antes");
             return;

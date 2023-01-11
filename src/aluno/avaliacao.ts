@@ -1,20 +1,3 @@
-export enum Etapa {
-    Infantil,
-    Fundamental,
-    Medio,
-}
-
-export class Aluno {
-    nome: string;
-    etapa: Etapa;
-    avaliacao?: Avaliacao;
-
-    constructor(nome: string, etapa: Etapa) {
-        this.nome = nome;
-        this.etapa = etapa;
-    }
-}
-
 export class Avaliacao {
     private nota: number;
     public materia: string;
@@ -30,7 +13,7 @@ export class Avaliacao {
         }
     }
 
-    private validarProfessor() {
+    private validarProfessor(): boolean {
         // ....
 
         return true;

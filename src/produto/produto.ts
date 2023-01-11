@@ -26,11 +26,16 @@ export abstract class Produto {
     }
 }
 
+export interface Item {
+    estoque: number;
+}
+
 // Arroz => sub-classe     (classe filha)
 // Produto => super-classe (classe mãe)
 // Arroz É um produto
-export class Arroz extends Produto {
+export class Arroz extends Produto implements Item {
     public tipoArroz!: TipoArroz;
+    estoque!: number;
 
     constructor(valor: number, tipoArroz: TipoArroz) {
         super("Arroz", valor, TipoProduto.Alimento);
@@ -40,6 +45,7 @@ export class Arroz extends Produto {
 
     public mostrarValor() {
         console.log("O valor é " + this.valor);
+        console.log(this.valor);
     }
 }
 
