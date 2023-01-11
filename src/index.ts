@@ -1,74 +1,128 @@
-import { Aluno, Etapa } from "./aluno/aluno";
 import {
+    Produto,
     Arroz,
     Bebida,
-    Produto,
-    TipoArroz,
     TipoProduto,
+    TipoArroz,
 } from "./produto/produto";
-import { User } from "./user/user";
 
-// // Paradigma IMPERATIVO
-// let valor1 = 10;
-// let valor2 = 8;
+let objectXicara = new Produto("Xicara", 20, TipoProduto.Bazar);
 
-// let media = (valor1 + valor2) / 2;
-// console.log(media);
+let produtos: Produto[] = [
+    new Produto("Cerveja", 8, TipoProduto.Bebida),
+    new Arroz(6, TipoArroz.Branco),
+    new Produto("Feijão", 5, TipoProduto.Alimento),
+    objectXicara,
+    new Produto("Xicara", 50, TipoProduto.Bazar),
+];
 
-// // Paradigma PROCEDURAL
-// function calcularMedia(x: number, y: number) {
-//     return (x + y) / 2;
-// }
+function exemploMapForEach() {
+    let copia = produtos.map((item) => {
+        item.valor = item.valor + 10;
+        return item;
+    });
 
-// media = calcularMedia(valor1, valor2);
-// console.log(media);
+    produtos.forEach((item) => {
+        item.valor = item.valor + 10;
+    });
 
-// valor2 = 5;
-// media = calcularMedia(valor1, valor2);
-// console.log(media);
+    console.log(produtos);
+}
 
-// // Paradigma orientado a objetos
-let user1 = new User("us1", "João", 30);
-let user99 = new User("us99", "Maria");
+function exemploFilter() {
+    let bebidas = produtos.filter((item) => {
+        if (item.tipo === TipoProduto.Alimento) {
+            return true;
+        }
 
-// user1.mostarNome();
-// //user99.mostarNome();
+        return false;
+    });
 
-// user1.ativar();
-// user1.mostarNome();
+    function ehBebida(produto: Produto) {
+        return produto.tipo === TipoProduto.Bebida;
+    }
 
-let arroz = new Arroz(7, TipoArroz.Parbolizado);
+    bebidas = produtos.filter((item) => ehBebida(item));
 
-arroz.tipo = TipoProduto.Alimento;
-console.log(arroz.tipo);
+    console.log(bebidas);
+}
 
-let cocaCola = new Bebida("Coca Cola", 5, 2);
-// let xicara = new Produto("Xicara", 20, TipoProduto.Bazar);
+function exemploFindSomeEvery() {
+    let xicara = produtos.find((item) => item.nome === "Xicara");
 
-// arroz.mostrarValor();
-// xicara.mostrarValor();
-cocaCola.mostrarValor();
+    // let xicara = produtos.filter((item) => {
+    //     return item.nome.match(/^Xicara$/);
+    // });
 
-// console.log(arroz);
-// console.log(cocaCola);
-// console.log(xicara);
+    let xicaraIndex = produtos.findIndex((item) => item.nome === "Xicara");
 
-// function mostraTipoArroz(arroz: Arroz) {
-//     console.log(`O tipo do arroz é ${arroz.tipoArroz}`);
-// }
+    // produtos.includes(objectXicara);
 
-// function mostraTipoProduto(produto: Produto) {
-//     console.log(`O tipo do produto é ${produto.tipo}`);
-// }
+    console.log(xicara);
+    console.log(xicaraIndex);
 
-// mostraTipoArroz(arroz);
-// mostraTipoProduto(xicara);
-// mostraTipoProduto(arroz);
+    // console.log(produtos.some((item) => item.nome === "Pizza"));
+    // console.log(produtos.every((item) => item.valor < 100));
+}
 
-// const pedrinho = new Aluno("Pedro", Etapa.Infantil);
-// const avaliacao1 = new Avaliacao(10, "Português");
+function exemploAdd() {
+    let novosProdutos = [
+        new Produto("tomate", 10, TipoProduto.Alimento),
+        new Produto("Cebola", 5, TipoProduto.Alimento),
+    ];
 
-// pedrinho.avaliacao = avaliacao1;
+    produtos.push(...novosProdutos);
+    // produtos.unshift(...novosProdutos);
 
-// console.log(avaliacao1);
-// console.log(pedrinho);
+    // produtos = [...novosProdutos, ...produtos];
+
+    produtos = produtos.concat(novosProdutos);
+
+    console.log(produtos);
+}
+
+function exemploRemove() {
+    // Remove do final
+    // let produtoExcluido = produtos.pop();
+
+    // Remove do inicio
+    // produtos.shift();
+
+    let xicaraIndex = produtos.findIndex((item) => item.nome === "Xicara");
+
+    if (xicaraIndex >= 0) {
+        produtos.splice(xicaraIndex, 1);
+    }
+
+    // let produtosExcluidos = produtos.splice(1, 2);
+
+    console.log(produtos);
+    // console.log(produtosExcluidos);
+}
+
+function exemploReduce() {
+    let valor = produtos.reduce((current, item) => {
+        return current + item.valor;
+    }, 0);
+
+    // let valor: number[] = produtos.reduce((current: number[], item) => {
+    //     current.push(item.valor);
+    //     return current;
+    // }, []);
+
+    //      [ 8, 6,  5,  50, 20 ]
+    //   0  8  14  19  69  89
+
+    console.log(produtos);
+    console.log(valor);
+}
+
+function exemploFor() {
+    let somaValores = 0;
+
+    for (let item of produtos) {
+        somaValores = somaValores + item.valor;
+    }
+
+    console.log(somaValores);
+}

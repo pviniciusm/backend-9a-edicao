@@ -10,9 +10,9 @@ export enum TipoArroz {
     Branco = "B",
 }
 
-export abstract class Produto {
-    private nome: string;
-    protected valor: number;
+export class Produto {
+    public nome: string;
+    public valor: number;
     public tipo: TipoProduto;
 
     constructor(nome: string, valor: number, tipo: TipoProduto) {
