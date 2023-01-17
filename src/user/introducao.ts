@@ -1,12 +1,12 @@
-import { Aluno, Etapa } from "./aluno/aluno";
+import { Aluno, Etapa } from "../aluno/aluno";
 import {
     Arroz,
     Bebida,
     Produto,
     TipoArroz,
     TipoProduto,
-} from "./produto/produto";
-import { User } from "./user/user";
+} from "../produto/produto";
+import { User } from "./user";
 
 // // Paradigma IMPERATIVO
 // let valor1 = 10;
